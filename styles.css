@@ -183,3 +183,43 @@ h2 {
 		flex-direction: column;
 	}
 } 
+
+/* Forms */
+.form {
+	max-width: 70vw;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.form-row {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 3vh;
+}
+
+.form-row label {
+	font-weight: 700;
+	margin-bottom: 1vh;
+	font-size: 2.2vh;
+}
+
+.form-row input,
+.form-row textarea {
+	width: 100%;
+	padding: 1.5vh 1.5vw;
+	border: 0.2vh solid #ccc;
+	border-radius: 0.8vh;
+	font-size: 2vh;
+	font-family: 'Montserrat', sans-serif;
+	outline: none;
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 0.6vh rgba(0, 123, 255, 0.25);
+}
+
+.form .btn {
+	align-self: flex-start;
+} 
