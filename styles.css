@@ -1,3 +1,12 @@
+/* Color Palette */
+:root {
+	--color-accent: #C78283;
+	--color-text: #313638;
+	--color-bg: #E5E7E6;
+	--color-primary: #5C95FF;
+	--color-dark: #373F51;
+}
+
 /* Basic Reset and Typography */
 * {
 	margin: 0;
@@ -12,8 +21,12 @@ html {
 body {
 	font-family: 'Montserrat', sans-serif;
 	line-height: 1.6;
-	color: #333;
-	background-color: #f4f4f4;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	min-height: 100vh;
+	opacity: 0;
+	transform: translateY(1.2vh);
+	animation: page-enter 600ms ease-out forwards;
 }
 
 .container {
@@ -24,7 +37,7 @@ body {
 
 /* Header & Navigation */
 .main-header {
-	background: #007bff;
+	background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
 	color: #fff;
 	padding: 4vh 0;
 	text-align: center;
@@ -36,8 +49,11 @@ body {
 }
 
 .main-nav {
-	background: #333;
+	background: var(--color-dark);
 	color: #fff;
+	position: sticky;
+	top: 0;
+	z-index: 10;
 }
 
 .main-nav ul {
@@ -52,11 +68,28 @@ body {
 	padding: 1.5vh 2.5vw;
 	color: #fff;
 	text-decoration: none;
-	transition: background-color 0.3s;
+	transition: color 200ms ease;
+	position: relative;
+}
+
+.main-nav ul li a::after {
+	content: "";
+	position: absolute;
+	left: 10%;
+	bottom: 0.6vh;
+	height: 0.4vh;
+	width: 0;
+	background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+	border-radius: 1vh;
+	transition: width 250ms ease;
 }
 
 .main-nav ul li a:hover {
-	background-color: #555;
+	color: var(--color-bg);
+}
+
+.main-nav ul li a:hover::after {
+	width: 80%;
 }
 
 /* Main Sections */
@@ -68,7 +101,7 @@ section {
 h2 {
 	font-size: 5vh;
 	margin-bottom: 4vh;
-	color: #007bff;
+	color: var(--color-primary);
 }
 
 /* Campaign Intro Section */
@@ -86,7 +119,7 @@ h2 {
 }
 
 .intro-text h2 {
-	color: #333;
+	color: var(--color-text);
 }
 
 .intro-image {
@@ -98,17 +131,20 @@ h2 {
 /* Buttons */
 .btn {
 	display: inline-block;
-	background: #007bff;
+	background: var(--color-primary);
 	color: #fff;
 	padding: 1.5vh 3vw;
 	text-decoration: none;
 	border-radius: 0.8vh;
 	margin-top: 2vh;
-	transition: background-color 0.3s;
+	transition: transform 150ms ease, box-shadow 200ms ease, background-color 200ms ease;
+	box-shadow: 0 0.6vh 1.2vh rgba(55, 63, 81, 0.15);
 }
 
 .btn:hover {
-	background: #0056b3;
+	background: var(--color-accent);
+	transform: translateY(-0.3vh);
+	box-shadow: 0 1vh 2vh rgba(55, 63, 81, 0.25);
 }
 
 /* Platform Cards */
@@ -123,15 +159,23 @@ h2 {
 	background: #fff;
 	padding: 4vh 3vw;
 	border-radius: 1vh;
-	box-shadow: 0 0.6vh 1.2vh rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0.6vh 1.2vh rgba(0, 0, 0, 0.08);
 	flex: 1 1 24vw;
 	min-width: 35vw;
+	border: 0.2vh solid rgba(55, 63, 51, 0.08);
+	transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
 .card h3 {
 	margin-bottom: 2vh;
-	color: #007bff;
+	color: var(--color-primary);
 	font-size: 3.2vh;
+}
+
+.card:hover {
+	transform: translateY(-0.6vh);
+	box-shadow: 0 1.2vh 2.4vh rgba(0, 0, 0, 0.12);
+	border-color: var(--color-primary);
 }
 
 /* Resources Section */
@@ -142,22 +186,50 @@ h2 {
 
 #resources li a {
 	text-decoration: none;
-	color: #007bff;
+	color: var(--color-primary);
 	font-weight: 700;
 	padding: 1vh 0;
 	display: block;
+	transition: color 150ms ease;
 }
 
 #resources li a:hover {
 	text-decoration: underline;
+	color: var(--color-accent);
 }
 
 /* Footer */
 .main-footer {
-	background: #333;
+	background: var(--color-dark);
 	color: #fff;
 	text-align: center;
 	padding: 3vh 0;
+}
+
+/* Reveal on Scroll */
+.reveal {
+	opacity: 0;
+	transform: translateY(2vh) scale(0.995);
+	filter: blur(0.2vh);
+	transition: opacity 500ms ease, transform 500ms ease, filter 500ms ease;
+}
+
+.reveal.in-view {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+	filter: blur(0);
+}
+
+/* Page Transitions */
+body.fade-out {
+	opacity: 0;
+	filter: blur(0.2vh);
+	transition: opacity 300ms ease, filter 300ms ease;
+}
+
+@keyframes page-enter {
+	0% { opacity: 0; transform: translateY(1.2vh); }
+	100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive Design */
@@ -182,7 +254,7 @@ h2 {
 	.platform-cards {
 		flex-direction: column;
 	}
-} 
+}
 
 /* Forms */
 .form {
@@ -201,6 +273,7 @@ h2 {
 	font-weight: 700;
 	margin-bottom: 1vh;
 	font-size: 2.2vh;
+	color: var(--color-dark);
 }
 
 .form-row input,
@@ -212,14 +285,24 @@ h2 {
 	font-size: 2vh;
 	font-family: 'Montserrat', sans-serif;
 	outline: none;
+	background: #fff;
+	color: var(--color-text);
 }
 
 .form-row input:focus,
 .form-row textarea:focus {
-	border-color: #007bff;
-	box-shadow: 0 0 0.6vh rgba(0, 123, 255, 0.25);
+	border-color: var(--color-primary);
+	box-shadow: 0 0 0.6vh rgba(92, 149, 255, 0.25);
 }
 
 .form .btn {
 	align-self: flex-start;
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation: none !important;
+		transition: none !important;
+	}
 } 
