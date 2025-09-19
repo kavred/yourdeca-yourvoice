@@ -1,0 +1,185 @@
+/* Basic Reset and Typography */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 1.6vh;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	line-height: 1.6;
+	color: #333;
+	background-color: #f4f4f4;
+}
+
+.container {
+	width: 80vw;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+/* Header & Navigation */
+.main-header {
+	background: #007bff;
+	color: #fff;
+	padding: 4vh 0;
+	text-align: center;
+}
+
+.main-header h1 {
+	font-size: 6vh;
+	margin-bottom: 1vh;
+}
+
+.main-nav {
+	background: #333;
+	color: #fff;
+}
+
+.main-nav ul {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	gap: 2vw;
+}
+
+.main-nav ul li a {
+	display: block;
+	padding: 1.5vh 2.5vw;
+	color: #fff;
+	text-decoration: none;
+	transition: background-color 0.3s;
+}
+
+.main-nav ul li a:hover {
+	background-color: #555;
+}
+
+/* Main Sections */
+section {
+	padding: 8vh 0;
+	text-align: center;
+}
+
+h2 {
+	font-size: 5vh;
+	margin-bottom: 4vh;
+	color: #007bff;
+}
+
+/* Campaign Intro Section */
+#campaign-intro .container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 4vw;
+}
+
+.intro-text {
+	flex: 1 1 0;
+	text-align: left;
+	padding-right: 4vw;
+}
+
+.intro-text h2 {
+	color: #333;
+}
+
+.intro-image {
+	flex: 1 1 0;
+	max-width: 30vw;
+	height: auto;
+}
+
+/* Buttons */
+.btn {
+	display: inline-block;
+	background: #007bff;
+	color: #fff;
+	padding: 1.5vh 3vw;
+	text-decoration: none;
+	border-radius: 0.8vh;
+	margin-top: 2vh;
+	transition: background-color 0.3s;
+}
+
+.btn:hover {
+	background: #0056b3;
+}
+
+/* Platform Cards */
+.platform-cards {
+	display: flex;
+	justify-content: space-between;
+	gap: 2vw;
+	flex-wrap: wrap;
+}
+
+.card {
+	background: #fff;
+	padding: 4vh 3vw;
+	border-radius: 1vh;
+	box-shadow: 0 0.6vh 1.2vh rgba(0, 0, 0, 0.1);
+	flex: 1 1 24vw;
+	min-width: 35vw;
+}
+
+.card h3 {
+	margin-bottom: 2vh;
+	color: #007bff;
+	font-size: 3.2vh;
+}
+
+/* Resources Section */
+#resources ul {
+	list-style: none;
+	padding: 0;
+}
+
+#resources li a {
+	text-decoration: none;
+	color: #007bff;
+	font-weight: 700;
+	padding: 1vh 0;
+	display: block;
+}
+
+#resources li a:hover {
+	text-decoration: underline;
+}
+
+/* Footer */
+.main-footer {
+	background: #333;
+	color: #fff;
+	text-align: center;
+	padding: 3vh 0;
+}
+
+/* Responsive Design */
+@media (max-width: 100vh) {
+	.main-nav ul {
+		flex-direction: column;
+	}
+	
+	.main-nav ul li a {
+		padding: 1.2vh 2vw;
+	}
+	
+	#campaign-intro .container {
+		flex-direction: column;
+	}
+	
+	.intro-text, .intro-image {
+		padding: 0;
+		margin-bottom: 4vh;
+	}
+	
+	.platform-cards {
+		flex-direction: column;
+	}
+} 
